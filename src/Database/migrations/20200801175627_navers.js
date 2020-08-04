@@ -3,8 +3,8 @@ exports.up = (knex) =>
     table.increments();
     table.string('name').notNullable();
     table.date('birthdate').notNullable();
-    table.date('admission_date').notNullable();
-    table.string('job_role').notNullable();
+    table.date('admissionDate').notNullable();
+    table.string('jobRole').notNullable();
 
     table.integer('user_id').notNullable();
 
