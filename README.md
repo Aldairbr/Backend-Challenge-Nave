@@ -8,7 +8,7 @@ Após ter as dependências instaladas, vá até o pgadmin e crie um database.
 No arquivo **knexfile.js**, localizado na raiz do projeto
 modifique o **password** e o **database** com suas credenciais.
 Após ter criado o database vá até **src/Database/migrations**
-e rode o comando **yarn knex migrate:run** para inserir tabelas
+e rode o comando **yarn knex migrate:latest** para inserir tabelas
 no banco criado.
 Se quiser popular o banco, vá até **src/Database/seeds** e
 rode o comando **yarn knex seed:run**.
