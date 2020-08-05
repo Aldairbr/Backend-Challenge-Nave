@@ -5,7 +5,11 @@ exports.up = (knex) =>
 
     table.integer('user_id').notNullable();
 
-    table.foreign('user_id').references('id').inTable('users');
+    table
+      .foreign('user_id')
+      .references('id')
+      .inTable('users')
+      .onDelete('CASCADE');
   });
 
 exports.down = (knex) => knex.schema.dropTable('projects');
