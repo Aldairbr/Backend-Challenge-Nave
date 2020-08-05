@@ -1,10 +1,10 @@
 # Backend-Challenge-Nave
 #### Teste de backend da nave.
 
-** (EM DESENVOLVIMENTO)
+###(EM DESENVOLVIMENTO)
 ## Passos para usar o sistema.
-
-Vá até o pgadmin e crie um database.
+Instale as dependências do projeto com o comando **Yarn** 
+Após ter as dependências instaladas, vá até o pgadmin e crie um database.
 No arquivo **knexfile.js**, localizado na raiz do projeto
 modifique o **password** e o **database** com suas credenciais.
 Após ter criado o database vá até **src/Database/migrations**
