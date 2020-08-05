@@ -1,6 +1,7 @@
 # Backend-Challenge-Nave
 #### Teste de backend da nave.
 
+** (EM DESENVOLVIMENTO)
 ## Passos para usar o sistema.
 
 Vá até o pgadmin e crie um database.
