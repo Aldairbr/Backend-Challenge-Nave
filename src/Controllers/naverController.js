@@ -1,8 +1,16 @@
 import connection from '../Database/connection';
 import { naverSchema } from '../Validations/validations';
+import {
+  getNaver,
+  getProjectNaverInf,
+  naverExists,
+  delNaverById,
+  naverFilter,
+  getUpdatedNaver,
+} from '../Services/naverServices';
 
 const naverController = {
-  store: async (request, response) => {
+  Store: async (request, response) => {
     const { userId } = request;
 
     if (!(await naverSchema.isValid(request.body))) {
@@ -10,17 +18,6 @@ const naverController = {
     }
 
     const { name, birthdate, admissionDate, jobRole, projects } = request.body;
-
-    const insertedId = await connection('navers')
-      .insert({
-        name,
-        birthdate,
-        admissionDate,
-        jobRole,
-        user_id: userId,
-      })
-      .returning('id');
-
     const data = {
       name,
       birthdate,
@@ -28,6 +25,8 @@ const naverController = {
       jobRole,
       user_id: userId,
     };
+
+    const insertedId = await connection('navers').insert(data).returning('id');
 
     if (!projects) {
       return response.json(data);
@@ -45,68 +44,87 @@ const naverController = {
     return response.json({ ...data, projects });
   },
 
-  show: async (request, response) => {
+  Show: async (request, response) => {
     const { id } = request.params;
     const { userId } = request;
+    try {
+      const naver = await getNaver(id, userId);
 
-    const naver = await connection('navers')
-      .where({ id })
-      .where('user_id', userId)
-      .select('navers.*')
-      .first();
+      if (!naver) {
+        return response.status(404).json({ Message: 'Naver not found!' });
+      }
+      const projects = await getProjectNaverInf(id, userId);
 
-    if (!naver) {
-      return response.status(400).json({ Message: 'Naver not found!' });
+      return response.json({ ...naver, projects });
+    } catch (error) {
+      return response.json({ error });
     }
-    const projects = await connection('navers')
-      .innerJoin('project_naver', 'navers.id', 'project_naver.naver_id')
-      .innerJoin('projects', 'projects.id', 'project_naver.project_id')
-      .where('project_naver.naver_id', id)
-      .select('projects.id', 'projects.name');
-
-    return response.json({ ...naver, projects });
   },
 
-  index: async (request, response) => {
-    const { name } = request.query;
+  Index: async (request, response) => {
+    const { name, admissionDate, jobRole } = request.query;
     const { userId } = request;
 
-    if (name) {
-      const navers = await connection('navers')
-        .where('user_id', userId)
-        .where({ name })
-        .select('navers.*');
+    try {
+      const navers = await naverFilter(userId, name, admissionDate, jobRole);
 
       return response.json(navers);
+    } catch (error) {
+      return response.json({ error });
     }
-
-    const navers = await connection('navers')
-      .where({ user_id: userId })
-      .select('navers.*');
-
-    return response.json(navers);
   },
 
-  delete: async (request, response) => {
+  Delete: async (request, response) => {
     const { id } = request.params;
     const { userId } = request;
 
-    const naver = await connection('navers')
-      .where({ id })
-      .select('user_id')
-      .first();
+    try {
+      const naver = await naverExists(id);
 
-    if (!naver) {
-      return response.status(404).json({ Message: 'naver not found!' });
+      if (!naver) {
+        return response.status(404).json({ Message: 'naver not found!' });
+      }
+
+      if (naver.user_id !== userId) {
+        return response
+          .status(401)
+          .json({ Message: 'Operation not permitted!' });
+      }
+
+      await delNaverById(id);
+
+      return response.status(204).send();
+    } catch (error) {
+      return response.status(401).json({ error });
     }
+  },
+  Update: async (request, response) => {
+    const { userId } = request;
+    const { id } = request.params;
 
-    if (naver.user_id !== userId) {
-      return response.status(401).json({ Message: 'Operation not permitted!' });
+    const { name, birthdate, admissionDate, jobRole } = request.body;
+
+    if (!(await naverSchema.isValid(request.body))) {
+      return response.status(401).json({ ERROR: 'validations fail' });
     }
-    await connection('project_naver').where('naver_id', id).delete();
-    await connection('navers').where({ id }).delete();
+    const naver = { name, birthdate, admissionDate, jobRole };
 
-    return response.status(204).send();
+    try {
+      await getUpdatedNaver(
+        userId,
+        id,
+        name,
+        birthdate,
+        admissionDate,
+        jobRole
+      );
+
+      return response.json({
+        ...naver,
+      });
+    } catch (error) {
+      return response.status(401).json({ error: 'update Error' });
+    }
   },
 };
 

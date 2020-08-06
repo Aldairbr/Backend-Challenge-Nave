@@ -1,5 +1,13 @@
 import connection from '../Database/connection';
 import { projectSchema } from '../Validations/validations';
+import {
+  getNaverProjectInf,
+  getProject,
+  projectExists,
+  delProjectById,
+  projectFilter,
+  getUpdatedProject,
+} from '../Services/projectServices';
 
 const projectController = {
   Store: async (request, response) => {
@@ -37,69 +45,80 @@ const projectController = {
     });
   },
 
-  index: async (request, response) => {
+  Index: async (request, response) => {
     const { userId } = request;
     const { name } = request.query;
 
-    if (!name) {
-      const projects = await connection('projects')
-        .where('user_id', userId)
-        .select('id', 'name');
+    try {
+      const projects = await projectFilter(userId, name);
 
       return response.json(projects);
+    } catch (error) {
+      return response.json({ error });
     }
-
-    const projects = await connection('projects')
-      .Where('user_id', userId)
-      .Where({ name })
-      .select('projects.id', 'projects.name');
-
-    return response.json(projects);
   },
 
-  show: async (request, response) => {
+  Show: async (request, response) => {
     const { id } = request.params;
     const { userId } = request;
 
-    const project = await connection('projects')
-      .where({ id })
-      .where('user_id', userId)
-      .select('id', 'name')
-      .first();
+    try {
+      const project = await getProject(id, userId);
 
-    if (!project) {
-      return response.status(400).json({ Message: 'project not found!' });
+      const navers = await getNaverProjectInf(id);
+
+      return response.json({ ...project, navers });
+    } catch (error) {
+      return response.status(404).json({ error: 'Project not found!' });
     }
-    const navers = await connection('projects')
-      .innerJoin('project_naver', 'projects.id', 'project_naver.project_id')
-      .innerJoin('navers', 'navers.id', 'project_naver.naver_id')
-      .where('project_naver.project_id', id)
-      .select('navers.*');
-
-    return response.json({ ...project, navers });
   },
 
-  delete: async (request, response) => {
+  Delete: async (request, response) => {
+    const { id } = request.params;
+    const { userId } = request;
+
+    try {
+      const project = await projectExists(id);
+
+      if (!project) {
+        return response.status(404).json({ error: 'Project not found' });
+      }
+
+      if (project.user_id !== userId) {
+        return response
+          .status(401)
+          .json({ error: 'Operation not  permitted.' });
+      }
+
+      await delProjectById(id);
+
+      return response.status(204).send();
+    } catch (error) {
+      return response.status(401).json({ error });
+    }
+  },
+  Update: async (request, response) => {
+    const { userId } = request;
     const { id } = request.params;
 
-    const { userId } = request.userId;
+    const { name } = request.body;
 
-    const project = await connection('projects')
-      .where('id', id)
-      .select('user_id')
-      .first();
-
-    if (!project) {
-      return response.status(404).json({ error: 'Project not found' });
+    if (!(await projectSchema.isValid(request.body))) {
+      return response.status(401).json({ ERROR: 'validations fail' });
     }
-    if (project.user_id !== userId) {
-      return response.status(401).json({ error: 'Operation not  permitted.' });
+    try {
+      const updatedProject = await getUpdatedProject(userId, id, name);
+
+      if (!updatedProject) {
+        return response.status(400).json({ ERROR: 'UPDATE ERROR' });
+      }
+
+      return response.json({
+        name,
+      });
+    } catch (error) {
+      return response.json({ error });
     }
-
-    await connection('project_naver').where('project_id', id).delete();
-    await connection('projects').where('id', id).delete();
-
-    return response.status(204).send();
   },
 };
 
