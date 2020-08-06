@@ -2,7 +2,7 @@ import connection from '../Database/connection';
 import { userSchema } from '../Validations/validations';
 
 const userController = {
-  store: async (request, response) => {
+  Store: async (request, response) => {
     if (!(await userSchema.isValid(request.body))) {
       return response.status(401).json({ ERROR: 'validations fail' });
     }
