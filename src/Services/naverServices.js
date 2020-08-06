@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import connection from '../Database/connection';
 
 export const getNaver = async (id, userId) => {
@@ -11,11 +10,12 @@ export const getNaver = async (id, userId) => {
   return naver;
 };
 
-export const getProjectNaverInf = async (id) => {
+export const getProjectNaverInf = async (id, userId) => {
   const projects = await connection('navers')
     .innerJoin('project_naver', 'navers.id', 'project_naver.naver_id')
     .innerJoin('projects', 'projects.id', 'project_naver.project_id')
     .where('project_naver.naver_id', id)
+    .andWhere('projects.user_id', userId)
     .select('projects.id', 'projects.name');
 
   return projects;
@@ -34,4 +34,41 @@ export const delNaverById = async (id) => {
   const destroyNaver = await connection('navers').where({ id }).delete();
 
   return destroyNaver;
+};
+
+export const naverFilter = async (userId, name, admissionDate, jobRole) => {
+  const filteredNaver = await connection('navers')
+    .where({ user_id: userId })
+    .where((qb) => {
+      if (name) {
+        qb.orWhere({ name });
+      }
+      if (admissionDate) {
+        qb.orWhere({ admissionDate });
+      }
+      if (jobRole) {
+        qb.orWhere({ jobRole });
+      }
+    });
+
+  return filteredNaver;
+};
+
+export const getUpdatedNaver = async (
+  userId,
+  id,
+  name,
+  birthdate,
+  admissionDate,
+  jobRole
+) => {
+  const updatedNaver = await connection('navers')
+    .where({ user_id: userId })
+    .andWhere({ id })
+    .update({ name, birthdate, admissionDate, jobRole });
+  if (!updatedNaver) {
+    throw Error();
+  }
+
+  return updatedNaver;
 };
