@@ -1,17 +1,13 @@
 import JWT from 'jsonwebtoken';
 
 import authConfig from '../Config/auth';
-
-import connection from '../Database/connection';
+import { getUser } from '../Services/loginServices';
 
 const loginController = {
-  store: async (request, response) => {
+  Store: async (request, response) => {
     const { email, password } = request.body;
 
-    const user = await connection('users')
-      .where('users.email', email)
-      .where('users.password', password)
-      .first();
+    const user = await getUser(email, password);
 
     if (!user) {
       return response.status(401).json({
