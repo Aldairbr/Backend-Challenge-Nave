@@ -5,6 +5,7 @@ import {
   getProjectNaverInf,
   naverExists,
   delNaverById,
+  delProjectNaverById,
   naverFilter,
   getUpdatedNaver,
 } from '../Services/naverServices';
@@ -102,7 +103,7 @@ const naverController = {
     const { userId } = request;
     const { id } = request.params;
 
-    const { name, birthdate, admissionDate, jobRole } = request.body;
+    const { name, birthdate, admissionDate, jobRole, projects } = request.body;
 
     if (!(await naverSchema.isValid(request.body))) {
       return response.status(401).json({ ERROR: 'validations fail' });
@@ -110,7 +111,7 @@ const naverController = {
     const naver = { name, birthdate, admissionDate, jobRole };
 
     try {
-      await getUpdatedNaver(
+      const updatedNaver = await getUpdatedNaver(
         userId,
         id,
         name,
@@ -118,9 +119,23 @@ const naverController = {
         admissionDate,
         jobRole
       );
+      if (!updatedNaver) {
+        return response.status(400).json({ ERROR: 'UPDATE ERROR' });
+      }
+
+      const projectNaver = projects.map((projectId) => {
+        return {
+          naver_id: id,
+          project_id: projectId,
+        };
+      });
+
+      await delProjectNaverById(id);
+      await connection('project_naver').insert(projectNaver);
 
       return response.json({
         ...naver,
+        projects,
       });
     } catch (error) {
       return response.status(401).json({ error: 'update Error' });

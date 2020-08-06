@@ -5,6 +5,7 @@ import {
   getProject,
   projectExists,
   delProjectById,
+  delProjectNaverById,
   projectFilter,
   getUpdatedProject,
 } from '../Services/projectServices';
@@ -26,7 +27,7 @@ const projectController = {
       })
       .returning('id');
 
-    if (!navers) {
+    if (navers === undefined) {
       return response.json({ name });
     }
 
@@ -101,7 +102,7 @@ const projectController = {
     const { userId } = request;
     const { id } = request.params;
 
-    const { name } = request.body;
+    const { name, navers } = request.body;
 
     if (!(await projectSchema.isValid(request.body))) {
       return response.status(401).json({ ERROR: 'validations fail' });
@@ -113,8 +114,18 @@ const projectController = {
         return response.status(400).json({ ERROR: 'UPDATE ERROR' });
       }
 
+      const projectNaver = navers.map((naverId) => {
+        return {
+          naver_id: naverId,
+          project_id: id,
+        };
+      });
+
+      await delProjectNaverById(id);
+      await connection('project_naver').insert(projectNaver);
       return response.json({
         name,
+        navers,
       });
     } catch (error) {
       return response.json({ error });
