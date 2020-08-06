@@ -36,6 +36,14 @@ export const delNaverById = async (id) => {
   return destroyNaver;
 };
 
+export const delProjectNaverById = async (id) => {
+  const destroyNaverFK = await connection('project_naver')
+    .where({ naver_id: id })
+    .delete();
+
+  return destroyNaverFK;
+};
+
 export const naverFilter = async (userId, name, admissionDate, jobRole) => {
   const filteredNaver = await connection('navers')
     .where({ user_id: userId })

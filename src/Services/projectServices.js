@@ -38,6 +38,14 @@ export const delProjectById = async (id) => {
   return destroyProject;
 };
 
+export const delProjectNaverById = async (id) => {
+  const destroyProject = await connection('project_naver')
+    .where({ project_id: id })
+    .delete();
+
+  return destroyProject;
+};
+
 export const projectFilter = async (userId, name) => {
   const filteredProject = await connection('projects')
     .select('id', 'name')
