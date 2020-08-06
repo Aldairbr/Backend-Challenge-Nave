@@ -21,12 +21,12 @@ routes.get('/navers', naverController.Index);
 routes.post('/navers', naverController.Store);
 routes.get('/navers/:id', naverController.Show);
 routes.delete('/navers/:id', naverController.Delete);
-// routes.put('/navers/:id', naverController.Update);
+routes.put('/navers/:id', naverController.Update);
 
 routes.get('/projects', projectController.Index);
 routes.post('/projects', projectController.Store);
 routes.get('/projects/:id', projectController.Show);
 routes.delete('/projects/:id', projectController.Delete);
-// routes.put('/projects/:id', projectController.Update);
+routes.put('/projects/:id', projectController.Update);
 
 export default routes;
