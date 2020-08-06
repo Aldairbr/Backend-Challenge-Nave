@@ -19,6 +19,6 @@ module.exports = {
     'no-param-reassing': 'off',
     camelCase: 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
-    'linebreak-style': ['error', 'windows'], // changes the file to LF
+    'linebreak-style': ['error', 'windows'],
   },
 };
