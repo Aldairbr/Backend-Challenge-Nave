@@ -3,14 +3,14 @@
 
 ###(EM DESENVOLVIMENTO)
 ## Passos para usar o sistema.
-Instale as dependências do projeto com o comando **Yarn** 
+Instale as dependências do projeto com o comando **Yarn**
 Após ter as dependências instaladas, vá até o pgadmin e crie um database.
 No arquivo **knexfile.js**, localizado na raiz do projeto
 modifique o **password** e o **database** com suas credenciais.
-Após ter criado o database vá até **src/Database/migrations**
+Com a a database criada vá até **src/Database/migrations**
 e rode o comando **yarn knex migrate:latest** para inserir tabelas
 no banco criado.
-Se quiser popular o banco, vá até **src/Database/seeds** e
+Se quiser popular o banco com alguns dados iniciais, vá até **src/Database/seeds** e
 rode o comando **yarn knex seed:run**.
 
 Com as tabelas criadas vá até a raiz do projeto e rode o comando
@@ -23,3 +23,5 @@ Com as tabelas criadas vá até a raiz do projeto e rode o comando
    * knex: ^0.21.2
    * pg: ^8.3.0
    * yup: ^0.29.2
+
+## **Dificuldades
