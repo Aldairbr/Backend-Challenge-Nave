@@ -4,9 +4,8 @@ exports.seed = (knex) => {
     .then(() => {
       return knex('users').insert([
         {
-          id: 1,
           name: 'felipe adamoli',
-          email: 'adamoli@gmail.com',
+          email: 'adamoli@nave.rs',
           password: 1234,
         },
       ]);
