@@ -52,7 +52,7 @@ export const projectFilter = async (userId, name) => {
     .where({ user_id: userId })
     .where((qb) => {
       if (name) {
-        qb.where({ name });
+        qb.where('name', 'like', `%${name}%`);
       }
     });
 

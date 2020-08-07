@@ -49,13 +49,13 @@ export const naverFilter = async (userId, name, admissionDate, jobRole) => {
     .where({ user_id: userId })
     .where((qb) => {
       if (name) {
-        qb.orWhere({ name });
+        qb.orWhere('name', 'like', `%${name}%`);
       }
       if (admissionDate) {
         qb.orWhere({ admissionDate });
       }
       if (jobRole) {
-        qb.orWhere({ jobRole });
+        qb.orWhere('jobRole', 'like', `${jobRole}%`);
       }
     });
 
