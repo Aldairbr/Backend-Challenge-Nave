@@ -27,7 +27,7 @@ const projectController = {
       })
       .returning('id');
 
-    if (navers === undefined) {
+    if (!navers) {
       return response.json({ name });
     }
 
