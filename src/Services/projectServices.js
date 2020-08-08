@@ -13,11 +13,12 @@ export const getProject = async (id, userId) => {
   return project;
 };
 
-export const getNaverProjectInf = async (id) => {
+export const getNaverProjectInf = async (id, userId) => {
   const navers = await connection('navers')
     .innerJoin('project_naver', 'navers.id', 'project_naver.naver_id')
     .innerJoin('projects', 'projects.id', 'project_naver.project_id')
     .where('project_naver.project_id', id)
+    .andWhere('projects.user_id', userId)
     .select('navers.*');
 
   return navers;
