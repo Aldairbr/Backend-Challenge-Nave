@@ -1,7 +1,6 @@
 # Backend-Challenge-Nave
 #### Teste de backend da nave.
 
-###(EM DESENVOLVIMENTO)
 ## Passos para usar o sistema.
 Instale as dependências do projeto com o comando **Yarn**
 Após ter as dependências instaladas, vá até o pgadmin e crie um database.
@@ -25,3 +24,8 @@ Com as tabelas criadas vá até a raiz do projeto e rode o comando
    * yup: ^0.29.2
 
 ## **Dificuldades
+
+Ao longo do desenvolvimento dessa API, encontrei diversas dificuldades,
+mas grande parte delas foram solucionadas, outras ainda vou pesquisar mais
+para soluciona-las, mesmo após a entrega do teste.
+Contudo, acredito que a API esteja funcional.
