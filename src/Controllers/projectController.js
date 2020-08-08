@@ -66,7 +66,7 @@ const projectController = {
     try {
       const project = await getProject(id, userId);
 
-      const navers = await getNaverProjectInf(id);
+      const navers = await getNaverProjectInf(id, userId);
 
       return response.json({ ...project, navers });
     } catch (error) {

@@ -99,6 +99,7 @@ const naverController = {
       return response.status(401).json({ error });
     }
   },
+
   Update: async (request, response) => {
     const { userId } = request;
     const { id } = request.params;
