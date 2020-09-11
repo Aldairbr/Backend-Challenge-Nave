@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import connection from '../Database/connection';
 
-export const getUser = async (email, password) => {
+export const getUser = async (email) => {
   const user = await connection('users')
     .where({ email })
-    .where({ password })
+    .select('users.*')
     .first();
 
   return user;
