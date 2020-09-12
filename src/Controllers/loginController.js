@@ -2,7 +2,7 @@ import JWT from 'jsonwebtoken';
 
 import authConfig from '../Config/auth';
 import { getUser } from '../Services/loginServices';
-import { verifyPassword } from '../Services/userServices'
+import { verifyPassword } from '../Services/userServices';
 
 const loginController = {
   Store: async (request, response) => {
@@ -16,10 +16,10 @@ const loginController = {
       });
     }
 
-    if(!verifyPassword(password, user.password)){
+    if (!verifyPassword(password, user.password)) {
       return response.status(401).json({
-        message: 'Incorrect password, try again!'
-      })
+        message: 'Incorrect password, try again!',
+      });
     }
 
     const { id, name } = user;

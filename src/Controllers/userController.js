@@ -1,6 +1,6 @@
 import connection from '../Database/connection';
 import { userSchema } from '../Validations/validations';
-import { generatePasswordHashed } from '../Services/userServices'
+import { generatePasswordHashed } from '../Services/userServices';
 
 const userController = {
   Store: async (request, response) => {
@@ -10,7 +10,7 @@ const userController = {
 
     const { name, email, password } = request.body;
 
-    const passwordHashed = generatePasswordHashed(password)
+    const passwordHashed = generatePasswordHashed(password);
     const userExists = await connection('users').where({ email }).first();
 
     if (userExists) {
@@ -20,7 +20,7 @@ const userController = {
     await connection('users').insert({
       name,
       email,
-      password: passwordHashed
+      password: passwordHashed,
     });
 
     return response.json({ name, email, passwordHashed });
