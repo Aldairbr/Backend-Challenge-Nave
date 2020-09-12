@@ -1,3 +1,9 @@
+const { hashSync } = require('bcrypt');
+
+const salt = 10;
+const saltKeys = 'KjSkNiBgT';
+const password = '1234';
+
 exports.seed = (knex) => {
   return knex('users')
     .del()
@@ -6,7 +12,7 @@ exports.seed = (knex) => {
         {
           name: 'felipe adamoli',
           email: 'adamoli@nave.rs',
-          password: 1234,
+          password: hashSync(`${password}${saltKeys}`, salt),
         },
       ]);
     });
