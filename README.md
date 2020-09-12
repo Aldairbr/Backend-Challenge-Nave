@@ -4,8 +4,8 @@
 ## Passos para usar o sistema.
 Instale as dependências do projeto com o comando **Yarn**
 Após ter as dependências instaladas, vá até o pgadmin e crie um database.
-No arquivo **knexfile.js**, localizado na raiz do projeto
-modifique o **password** e o **database** com suas credenciais.
+No arquivo **.env.Example**, localizado na raiz do projeto, o renomeie para ".env"
+e, também, modifique o **PASSWORD** e o **DATABASE** com suas credenciais.
 Com a a database criada vá até **src/Database/migrations**
 e rode o comando **yarn knex migrate:latest** para inserir tabelas
 no banco criado.
@@ -22,6 +22,8 @@ Com as tabelas criadas vá até a raiz do projeto e rode o comando
    * knex: ^0.21.2
    * pg: ^8.3.0
    * yup: ^0.29.2
+   * dotenv: ^8.2.0
+   * bcrypt: ^5.0.0
 
 ## **Dificuldades
 
