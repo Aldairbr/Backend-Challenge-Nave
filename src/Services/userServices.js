@@ -1,17 +1,19 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 
-const salt = 10
-const saltKeys = 'KjSkNiBgT'
+const salt = 10;
+const saltKeys = 'KjSkNiBgT';
 
 export const generatePasswordHashed = (password) => {
+  const pass = bcrypt.hashSync(`${password}${saltKeys}`, salt);
 
-  const pass = bcrypt.hashSync(`${password}${saltKeys}` , salt)
-
-  return pass
-}
+  return pass;
+};
 
 export const verifyPassword = (passwordToCompare, password) => {
- const isValid = bcrypt.compareSync(`${passwordToCompare}${saltKeys}`, password)
+  const isValid = bcrypt.compareSync(
+    `${passwordToCompare}${saltKeys}`,
+    password
+  );
 
- return isValid
-}
+  return isValid;
+};
