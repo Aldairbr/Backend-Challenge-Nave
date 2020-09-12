@@ -1,4 +1,4 @@
-import { DATABASE, PASSWORD } from './src/Config/envConfig';
+const { DATABASE, PASSWORD } = require('./src/Config/envConfig');
 
 module.exports = {
   development: {
