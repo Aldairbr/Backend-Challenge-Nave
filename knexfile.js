@@ -1,11 +1,11 @@
-const { DATABASE, PASSWORD } = require('./src/Config/envConfig');
+const { USER, HOST, PASSWORD, DATABASE } = require('./src/Config/envConfig');
 
 module.exports = {
   development: {
     client: 'postgres',
     connection: {
-      host: '127.0.0.1',
-      user: 'postgres',
+      host: HOST,
+      user: USER,
       password: PASSWORD,
       database: DATABASE,
     },

@@ -5,8 +5,10 @@ dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 });
 
+const { USER } = process.env;
+const { HOST } = process.env;
 const { DATABASE } = process.env;
-const { PORT } = process.env || 3333;
 const { PASSWORD } = process.env;
+const { PORT } = process.env || 3333;
 
-module.exports = { DATABASE, PORT, PASSWORD };
+module.exports = { USER, HOST, PASSWORD, DATABASE, PORT };
