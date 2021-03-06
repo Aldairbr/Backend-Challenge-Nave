@@ -1,6 +1,6 @@
 #### Teste desenvolvido para vaga de estágio backend da nave.rs.
 
-* [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver as resoluções dos exercicios de lógica propostos no teste.
+* [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver a resolução dos exercicios de lógica propostos no teste.
 
 ## Passos para usar o sistema.
 
