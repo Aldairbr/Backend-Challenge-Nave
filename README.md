@@ -25,8 +25,10 @@
    para inserir as tabelas no banco criado.
    Se quiser popular o banco com alguns dados iniciais, rode o comando **_yarn seed:run_**.
 
-1. [Inicialização](#Inicialização)
+4. [Inicialização](#Inicialização)
 - Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema.
+
+5. [Testes de rotas](#Testes de rotas)
 
 ## **Dependências do projeto**
 
