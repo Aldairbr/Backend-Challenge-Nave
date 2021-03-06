@@ -1,4 +1,4 @@
-#### Teste desenvolvido para vaga de estágio backend da nave.rs.
+<center> #### Teste desenvolvido para vaga de estágio backend da nave.rs. </center>
 
 * [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver a resolução dos exercicios de lógica propostos no teste.
 
