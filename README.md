@@ -10,7 +10,7 @@
 
 2. [Configurações](#Configurações)
   - Após ter as dependências instaladas, é necessário criar uma base de dados. 
-  - Renomeie o arquivo **_.env.Example_** localizado na raiz do projeto para **_.env_** e coloque as configurações da sua base de dados
+  - Renomeie o arquivo **_.env.Example_** localizado na raiz do projeto para **_.env_** e insira as configurações da sua base de dados.
      _Exemplo:_ 
       _USER=postgres_
       _HOST=localhost_
@@ -26,7 +26,7 @@
    Se quiser popular o banco com alguns dados iniciais, rode o comando **_yarn seed:run_**.
    
 1. [Inicialização](#Inicialização)
-- Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema
+- Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema.
 
 ## **Dependências do projeto**
 
