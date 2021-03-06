@@ -1,8 +1,8 @@
- ###  Teste desenvolvido para vaga de estágio backend da nave.rs.
+ ##  Teste desenvolvido para vaga de estágio backend da nave.rs.
 
 * [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver a resolução dos exercicios de lógica propostos no teste.
 
-## Passos para usar o sistema.
+### Passos para usar o sistema.
 
 1. [Instalação](#instalacao)
   - Clone o projeto com o comando: **_"git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git"_**.
@@ -36,7 +36,7 @@
     Clique em _"No Environment"_ e depois em _Manage Environments_ e copie o token na propriedade _"token"_, logo abaixo de
     _"baseUrl"_
 
-## **Dependências do projeto**
+### Dependências do projeto**
 
    * express: ^4.17.1
    * jsonwebtoken: ^8.5.1
