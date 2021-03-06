@@ -1,4 +1,4 @@
- <h2 style="text-align: center;"> Teste desenvolvido para vaga de estágio backend da nave.rs. </h2>
+ ###  Teste desenvolvido para vaga de estágio backend da nave.rs.
 
 * [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver a resolução dos exercicios de lógica propostos no teste.
 
