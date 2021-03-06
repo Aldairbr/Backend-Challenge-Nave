@@ -8,7 +8,7 @@
   - Clone o projeto com o comando: **_"git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git"_**.
   - Acesse a raiz do projeto e instale as dependências do mesmo com o comando: **_"yarn"_** OU **_"npm i"_**.
 
-2. [Configurações](#Configurações)
+2. [Configuração](#Configuração)
   - Após ter as dependências instaladas, é necessário criar uma base de dados.
   - Renomeie o arquivo **_.env.Example_** localizado na raiz do projeto para **_.env_** e insira as credenciais da sua base de dados.
      _Exemplo:_
