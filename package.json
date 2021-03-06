@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "knex:latest": "knex migrate:latest",
+    "knex:rollback": "knex migrate:rollback",
+    "seed:run": "knex seed:run"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
