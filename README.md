@@ -1,19 +1,32 @@
-# Backend-Challenge-Nave
-#### Teste de backend da nave.
+#### Teste desenvolvido para vaga de estágio backend da nave.rs.
+
+* [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver as resoluções dos exercicios de lógica propostos no teste.
 
 ## Passos para usar o sistema.
-Instale as dependências do projeto com o comando **Yarn**
-Após ter as dependências instaladas, vá até o pgadmin e crie um database.
-No arquivo **.env.Example**, localizado na raiz do projeto, o renomeie para ".env"
-e, também, modifique o **PASSWORD** e o **DATABASE** com suas credenciais.
-Com a a database criada vá até **src/Database/migrations**
-e rode o comando **yarn knex migrate:latest** para inserir tabelas
-no banco criado.
-Se quiser popular o banco com alguns dados iniciais, vá até **src/Database/seeds** e
-rode o comando **yarn knex seed:run**.
 
-Com as tabelas criadas vá até a raiz do projeto e rode o comando
-**yarn dev** para iniciar o sistema
+1. [Instalação](#instalacao)
+- Clone o projeto com o comando: **_"git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git"_**.
+- Acesse a raiz do projeto e instale as dependências do mesmo com o comando: **_"yarn"_** OU **_"npm i"_**.
+
+2. [Configurações](#Configurações)
+  - Após ter as dependências instaladas, é necessário criar uma base de dados. 
+  - Renomeie o arquivo **_.env.Example_** localizado na raiz do projeto para **_.env_** e insira as configurações da sua base de dados.
+     _Exemplo:_ 
+      _USER=postgres_
+      _HOST=localhost_
+      _DATABASE=navedex_
+      _PASSWORD=123456_
+      _PORT=3333_
+
+3. Com a sua base de dados devidamente criada e configurada rode o comando: 
+                      **_"yarn knex:latest"_** 
+                               OU 
+                      **_"npm run knex:latest"_** 
+   para inserir as tabelas no banco criado.
+   Se quiser popular o banco com alguns dados iniciais, rode o comando **_yarn seed:run_**.
+   
+1. [Inicialização](#Inicialização)
+- Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema.
 
 ## **Dependências do projeto**
 
@@ -24,10 +37,3 @@ Com as tabelas criadas vá até a raiz do projeto e rode o comando
    * yup: ^0.29.2
    * dotenv: ^8.2.0
    * bcrypt: ^5.0.0
-
-## **Dificuldades
-
-Ao longo do desenvolvimento dessa API, encontrei diversas dificuldades,
-mas grande parte delas foram solucionadas, outras ainda vou pesquisar mais
-para soluciona-las, mesmo após a entrega do teste.
-Contudo, acredito que a API esteja funcional.
