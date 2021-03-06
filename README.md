@@ -5,8 +5,8 @@
 ## Passos para usar o sistema.
 
 1. [Instalação](#instalacao)
-- Clone o projeto com o comando **_git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git_**.
-- Acesse a raiz do projeto e instale as dependências do mesmo com o comando **_yarn ou npm i_**.
+- Clone o projeto com o comando: **_"git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git"_**.
+- Acesse a raiz do projeto e instale as dependências do mesmo com o comando: **_"yarn"_** OU **_"npm i"_**.
 
 2. [Configurações](#Configurações)
   - Após ter as dependências instaladas, é necessário criar uma base de dados. 
@@ -19,14 +19,14 @@
       _PORT=3333_
 
 3. Com a sua base de dados devidamente criada e configurada rode o comando: 
-                      **_yarn knex:latest_** 
+                      **_"yarn knex:latest"_** 
                                OU 
-                      **_npm run knex:latest_** 
+                      **_"npm run knex:latest"_** 
    para inserir as tabelas no banco criado.
    Se quiser popular o banco com alguns dados iniciais, rode o comando **_yarn seed:run_**.
    
 1. [Inicialização](#Inicialização)
-- Com as tabelas criadas rode o comand **_yarn dev_** ou **_npm run dev_** para iniciar o sistema
+- Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema
 
 ## **Dependências do projeto**
 
