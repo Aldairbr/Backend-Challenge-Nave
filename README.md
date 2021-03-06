@@ -29,7 +29,7 @@
   - Com as tabelas criadas rode o comand **_"yarn dev"_** ou **_"npm run dev"_** para iniciar o sistema.
 
 4. [Testes-de-rotas](#Testes-de-rotas)
-  - Exportei um arquivo contendo o esquema de rotas para teste do insomnia. Importe esse aquivo no seu insomnia.
+  - Importe o aquivo que está na pasta _insomnia_doc_ no seu insomnia.
     Com excessão a rota de **LOGIN** e a rota **SIGNUP** cuja rota cadastra usuario, todas as outras estão protegidas
     com midleware de autenticação, dito isso cadastre um usuario e faça login com as credenciais cadastradas.
   - Copie o token gerado ao fazer o login e cole em _"BEARER TOKEN"_ de cada rota, ou então para evitar tanto trabalho
