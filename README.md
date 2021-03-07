@@ -2,7 +2,7 @@
 
 * [Clique Aqui](https://codesandbox.io/s/hjvbu) para ver a resolução dos exercicios de lógica propostos no teste.
 
-### Passos para usar o sistema.
+### Passos para usar a API.
 
 1. [Instalação](#instalacao)
   - Clone o projeto com o comando: **_"git clone https://github.com/Aldairbr/Backend-Challenge-Nave.git"_**.
