@@ -36,7 +36,7 @@
     Clique em _"No Environment"_ e depois em "_Manage Environments_" e cole o token na propriedade _"token"_, logo abaixo de
     _"baseUrl"_
 
-### Dependências do projeto**
+### Dependências do projeto
 
    * express: ^4.17.1
    * jsonwebtoken: ^8.5.1
